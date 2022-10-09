@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>modApp v2.0.0</title>
+</head>
+<style>
+   
+        div#app {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 1rem;
+        }
+
+        div#app button {
+            height: 50px;
+        }
+        div#app button:hover:after {
+            content: "▶";
+        }
+
+        button.oynuyor {
+            background-color: darkcyan;
+            color: white;
+        }
+
+        div#app button.oynuyor:hover:after {
+            content: "⏸";
+        }
+
+        @media all and (max-width: 500px) {
+            div#app {
+                grid-template-columns: 1fr;
+            }  
+        }
+    
+
+</style>
+<body>
+    <div id="app">
+
+    </div>
+    <script>
+        const sesler = [
+            "beach-sound.mp3",
+            "birds-sound.mp3",
+            "cafe-sound.mp3",
+            "campfire-sound.mp3",
+            "city-sound.mp3",
+            "fireplace-sound.mp3",
+            "forest-sound.mp3",
+            "heavy-rain-sound.mp3",
+            "nighy-crickets-sound.mp3",
+            "rain-camping-sound.mp3",
+            "rain-sound.mp3",
+            "rain-windshield-sound.mp3",
+            "snow-sound.mp3",
+            "thunder-sound.mp3",
+            "train-sound.mp3"
+        ]
+
+        
+        for ( let i = 0; i < sesler.length; i++ ) {
+            let yeniEtiket = document.createElement("audio")
+            yeniEtiket.src = 'audio/' + sesler[i]
+            yeniEtiket.loop = true
+            
+            let oynatButonu = document.createElement("button")
+            oynatButonu.textContent = "Başlat " + (i + 1)
+            document.querySelector("#app").appendChild(oynatButonu)
+
+            oynatButonu.addEventListener("click", (olay) => {
+                if ( olay.currentTarget.classList.contains("oynuyor") === true ) {
+                    yeniEtiket.pause()
+                    olay.currentTarget.classList.remove("oynuyor")
+                } else {
+                    yeniEtiket.play()
+                    olay.currentTarget.classList.add("oynuyor")
+                }
+            })
+        }
+
+    
+
+        
+
+        
+
+    </script>
+
+    
+</body>
+</html>
